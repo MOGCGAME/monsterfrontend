@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.5",
+  "uuid": "37a63507-14b6-4e6d-9f5f-6aafec84d872",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 696,
+  "height": 2,
+  "platformSettings": {},
+  "subMetas": {
+    "好友分割线": {
+      "ver": "1.0.4",
+      "uuid": "d8a7ddb7-ee7b-490c-9f55-272253ba7a3e",
+      "rawTextureUuid": "37a63507-14b6-4e6d-9f5f-6aafec84d872",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 696,
+      "height": 2,
+      "rawWidth": 696,
+      "rawHeight": 2,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

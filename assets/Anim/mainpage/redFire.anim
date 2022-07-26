@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "redFire",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 1.5,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "props": {
+      "opacity": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 1.5,
+          "value": 255
+        }
+      ],
+      "position": [
+        {
+          "frame": 0,
+          "value": [
+            -323.647,
+            -34.988,
+            0
+          ]
+        },
+        {
+          "frame": 1.5,
+          "value": [
+            -207.018,
+            24.784,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  "events": []
+}

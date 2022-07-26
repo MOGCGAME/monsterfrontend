@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.5",
+  "uuid": "144c94ea-504e-432d-8079-f17412020863",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 93,
+  "height": 91,
+  "platformSettings": {},
+  "subMetas": {
+    "好友按钮加文字(启动状态)": {
+      "ver": "1.0.4",
+      "uuid": "232c06d6-112b-4657-926f-10142af3eccd",
+      "rawTextureUuid": "144c94ea-504e-432d-8079-f17412020863",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 93,
+      "height": 91,
+      "rawWidth": 93,
+      "rawHeight": 91,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

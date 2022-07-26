@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.5",
+  "uuid": "9223bb14-7603-499a-8fe1-0d992be1217d",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 111,
+  "height": 110,
+  "platformSettings": {},
+  "subMetas": {
+    "怪兽按钮加文字": {
+      "ver": "1.0.4",
+      "uuid": "b72ea6c9-757c-4c47-b7b0-5ecbfa77228a",
+      "rawTextureUuid": "9223bb14-7603-499a-8fe1-0d992be1217d",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 111,
+      "height": 110,
+      "rawWidth": 111,
+      "rawHeight": 110,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

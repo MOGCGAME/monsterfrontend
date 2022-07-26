@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.5",
+  "uuid": "2d9b59a2-121b-4ebd-8def-6baf2610d9a6",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 707,
+  "height": 477,
+  "platformSettings": {},
+  "subMetas": {
+    "阵型选择怪兽框": {
+      "ver": "1.0.4",
+      "uuid": "f4f45e7a-a6c1-4581-b08d-996aed460676",
+      "rawTextureUuid": "2d9b59a2-121b-4ebd-8def-6baf2610d9a6",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 707,
+      "height": 477,
+      "rawWidth": 707,
+      "rawHeight": 477,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

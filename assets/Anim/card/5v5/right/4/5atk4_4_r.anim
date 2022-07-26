@@ -1,0 +1,49 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "atk4_4_r",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 1.75,
+  "sample": 20,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "props": {
+      "position": [
+        {
+          "frame": 0,
+          "value": [
+            450,
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 0.5,
+          "value": [
+            -300,
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 1.25,
+          "value": [
+            -300,
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 1.75,
+          "value": [
+            450,
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  "events": []
+}

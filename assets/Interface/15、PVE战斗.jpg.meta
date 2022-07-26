@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.5",
+  "uuid": "afad10c8-2539-4a43-9908-420731c937fb",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 1280,
+  "height": 720,
+  "platformSettings": {},
+  "subMetas": {
+    "15、PVE战斗": {
+      "ver": "1.0.4",
+      "uuid": "22592c36-7069-44c7-9e9e-310725ac9d60",
+      "rawTextureUuid": "afad10c8-2539-4a43-9908-420731c937fb",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 1280,
+      "height": 720,
+      "rawWidth": 1280,
+      "rawHeight": 720,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

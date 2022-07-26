@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.5",
+  "uuid": "51d2ca76-f110-49f6-b41e-5d9ed22afa1f",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 878,
+  "height": 520,
+  "platformSettings": {},
+  "subMetas": {
+    "背包选择怪兽框": {
+      "ver": "1.0.4",
+      "uuid": "41cb8127-d31a-46fe-a5ea-1178edf9a851",
+      "rawTextureUuid": "51d2ca76-f110-49f6-b41e-5d9ed22afa1f",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 878,
+      "height": 520,
+      "rawWidth": 878,
+      "rawHeight": 520,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

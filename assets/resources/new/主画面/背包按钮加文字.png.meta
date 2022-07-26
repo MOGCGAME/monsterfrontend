@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.5",
+  "uuid": "0104697c-aa38-418b-9353-44d7885bfa9e",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 111,
+  "height": 110,
+  "platformSettings": {},
+  "subMetas": {
+    "背包按钮加文字": {
+      "ver": "1.0.4",
+      "uuid": "da8ac247-5b06-4149-8e07-b4f4d7603c34",
+      "rawTextureUuid": "0104697c-aa38-418b-9353-44d7885bfa9e",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 111,
+      "height": 110,
+      "rawWidth": 111,
+      "rawHeight": 110,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

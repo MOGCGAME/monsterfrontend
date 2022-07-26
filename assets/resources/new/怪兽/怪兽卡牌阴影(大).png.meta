@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.5",
+  "uuid": "0a371d9d-709f-40fe-84cc-9e480f1f1c21",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 309,
+  "height": 411,
+  "platformSettings": {},
+  "subMetas": {
+    "怪兽卡牌阴影(大)": {
+      "ver": "1.0.4",
+      "uuid": "a924b38b-9bdb-427e-8c94-fd133490b9b1",
+      "rawTextureUuid": "0a371d9d-709f-40fe-84cc-9e480f1f1c21",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 309,
+      "height": 411,
+      "rawWidth": 309,
+      "rawHeight": 411,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

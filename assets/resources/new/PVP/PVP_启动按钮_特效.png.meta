@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.5",
+  "uuid": "9ecfc47c-ea57-4dd8-a785-e35027614c15",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 247,
+  "height": 264,
+  "platformSettings": {},
+  "subMetas": {
+    "PVP_启动按钮_特效": {
+      "ver": "1.0.4",
+      "uuid": "b793cd04-9e60-4e7c-b7fc-98dc95261d72",
+      "rawTextureUuid": "9ecfc47c-ea57-4dd8-a785-e35027614c15",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 247,
+      "height": 264,
+      "rawWidth": 247,
+      "rawHeight": 264,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

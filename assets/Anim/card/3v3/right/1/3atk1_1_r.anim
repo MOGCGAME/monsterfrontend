@@ -1,0 +1,101 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "atk1_1_r",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 1.75,
+  "sample": 20,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "props": {
+      "position": [
+        {
+          "frame": 0,
+          "value": [
+            200,
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 0.5,
+          "value": [
+            -50,
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 1.25,
+          "value": [
+            -50,
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 1.75,
+          "value": [
+            200,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "paths": {
+      "atk": {
+        "props": {
+          "opacity": [
+            {
+              "frame": 0.65,
+              "value": 0
+            },
+            {
+              "frame": 0.75,
+              "value": 255
+            },
+            {
+              "frame": 1.05,
+              "value": 255
+            },
+            {
+              "frame": 1.15,
+              "value": 0
+            }
+          ]
+        }
+      },
+      "mixkit-ghost-fire-swoosh-1340": {
+        "comps": {
+          "cc.AudioSource": {
+            "volume": [
+              {
+                "frame": 0,
+                "value": 1
+              },
+              {
+                "frame": 0.4,
+                "value": 0
+              },
+              {
+                "frame": 0.5,
+                "value": 1
+              }
+            ]
+          }
+        },
+        "props": {
+          "active": [
+            {
+              "frame": 0.5,
+              "value": true
+            }
+          ]
+        }
+      }
+    }
+  },
+  "events": []
+}

@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.5",
+  "uuid": "3fa5c6b1-b078-4e4a-8175-28a065bb4b69",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 107,
+  "height": 142,
+  "platformSettings": {},
+  "subMetas": {
+    "PVE选择怪兽的卡牌背景": {
+      "ver": "1.0.4",
+      "uuid": "8e093551-c89b-42d4-b237-24eb5b603761",
+      "rawTextureUuid": "3fa5c6b1-b078-4e4a-8175-28a065bb4b69",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 107,
+      "height": 142,
+      "rawWidth": 107,
+      "rawHeight": 142,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

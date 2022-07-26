@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.5",
+  "uuid": "4401f6f0-343b-4b9b-9208-742def09f336",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 97,
+  "height": 128,
+  "platformSettings": {},
+  "subMetas": {
+    "战斗卡牌白背景": {
+      "ver": "1.0.4",
+      "uuid": "a78b8efc-8212-42db-82a8-7bc2f220d5ef",
+      "rawTextureUuid": "4401f6f0-343b-4b9b-9208-742def09f336",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 97,
+      "height": 128,
+      "rawWidth": 97,
+      "rawHeight": 128,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

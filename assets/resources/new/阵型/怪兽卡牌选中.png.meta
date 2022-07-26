@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.5",
+  "uuid": "43fd5c45-f932-4e19-97c6-068b38240764",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 121,
+  "height": 156,
+  "platformSettings": {},
+  "subMetas": {
+    "怪兽卡牌选中": {
+      "ver": "1.0.4",
+      "uuid": "eab3538b-f125-43cb-9829-7a71decf6df8",
+      "rawTextureUuid": "43fd5c45-f932-4e19-97c6-068b38240764",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 121,
+      "height": 156,
+      "rawWidth": 121,
+      "rawHeight": 156,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

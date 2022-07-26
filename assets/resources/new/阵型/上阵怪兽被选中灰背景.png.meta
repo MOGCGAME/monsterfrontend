@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.5",
+  "uuid": "944caae2-03a2-4f0f-9e70-992fd1910103",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 152,
+  "height": 198,
+  "platformSettings": {},
+  "subMetas": {
+    "上阵怪兽被选中灰背景": {
+      "ver": "1.0.4",
+      "uuid": "6dd84f3d-e950-4080-842b-38e7a9f83c8e",
+      "rawTextureUuid": "944caae2-03a2-4f0f-9e70-992fd1910103",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 152,
+      "height": 198,
+      "rawWidth": 152,
+      "rawHeight": 198,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

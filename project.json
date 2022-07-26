@@ -1,0 +1,8 @@
+{
+  "engine": "cocos2d-html5",
+  "packages": "packages",
+  "version": "2.4.4",
+  "name": "frontend",
+  "id": "5f91ccdb-a5ea-45fb-9c76-987789859ff7",
+  "isNew": false
+}

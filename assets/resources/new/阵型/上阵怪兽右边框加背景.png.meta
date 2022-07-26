@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.5",
+  "uuid": "4bda8766-d3df-4521-b4aa-bf356dffedf5",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 787,
+  "height": 651,
+  "platformSettings": {},
+  "subMetas": {
+    "上阵怪兽右边框加背景": {
+      "ver": "1.0.4",
+      "uuid": "3fcaa55e-f671-49f0-82b2-89570c0f8ee7",
+      "rawTextureUuid": "4bda8766-d3df-4521-b4aa-bf356dffedf5",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 787,
+      "height": 651,
+      "rawWidth": 787,
+      "rawHeight": 651,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

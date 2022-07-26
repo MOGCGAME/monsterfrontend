@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.5",
+  "uuid": "590273d5-85d4-4322-9514-bed0200113e1",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 165,
+  "height": 140,
+  "platformSettings": {},
+  "subMetas": {
+    "PVP_未启动按钮": {
+      "ver": "1.0.4",
+      "uuid": "bed324ae-5f29-492b-917d-fab1dd7fa818",
+      "rawTextureUuid": "590273d5-85d4-4322-9514-bed0200113e1",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 165,
+      "height": 140,
+      "rawWidth": 165,
+      "rawHeight": 140,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
