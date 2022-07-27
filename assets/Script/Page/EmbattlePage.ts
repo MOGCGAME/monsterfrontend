@@ -32,6 +32,10 @@ export default class EmbattlePage extends cc.Component {
     monsterCard: cc.Prefab = null;
     @property(cc.Node)
     popupDialog: cc.Node = null;
+    @property(cc.Node)
+    noMonsterLabel: cc.Node = null;
+    @property(cc.Node)
+    backButton: cc.Node = null;
 
     prev: string;
     current: string;
@@ -207,19 +211,26 @@ export default class EmbattlePage extends cc.Component {
     }
 
     showMonster(seq) {
+        this.node.parent.getChildByName("TopBar").getComponent("TopBar").setBlockInputEvents(true);
         this.monsterSelect.active = true;
         if(this.firstLoading){
             this.monsterScroll.content.removeAllChildren();
             httpMng.post("/monster/getMonster", {teamId : this.currentTeam, teamLength: this.currentMode}, 
             (ret) => {
                 console.log("monster:", ret.monster)
-                for (var i = 0; i < ret.monster.length; i++) {
-                    var monster = cc.instantiate(this.monsterCard)
-                    var monsterInfo = monster.getComponent("MonsterCard");
-                    monsterInfo.lobby = this;
-                    monsterInfo.init(ret.monster[i], seq);
-                    this.monsterScroll.content.addChild(monster)
+                if(ret.monster != null){
+                    this.noMonsterLabel.active = false;
+                    for (var i = 0; i < ret.monster.length; i++) {
+                        var monster = cc.instantiate(this.monsterCard)
+                        var monsterInfo = monster.getComponent("MonsterCard");
+                        monsterInfo.lobby = this;
+                        monsterInfo.init(ret.monster[i], seq);
+                        this.monsterScroll.content.addChild(monster)
+                    }
+                }else{
+                    this.noMonsterLabel.active = true;
                 }
+                
             })
             this.firstLoading = false;
         }else{
@@ -231,8 +242,12 @@ export default class EmbattlePage extends cc.Component {
         
     }
 
+    destroyNode(){
+        this.node.destroy();
+    }
     closeMonster() {
         this.monsterSelect.active = false;
+        this.node.parent.getChildByName("TopBar").getComponent("TopBar").setBlockInputEvents(false);
     }
 
     selectMonster(monsterid, monsteruid, seq) {

@@ -26,6 +26,10 @@ export default class BagPage extends cc.Component {
     item_btns: cc.Node = null;
     @property(cc.Node)
     monsterUsedPanel: cc.Node = null;
+    @property(cc.Node)
+    no_prop_label : cc.Node = null;
+    @property(cc.Node)
+    own_count_label : cc.Node = null;
     
     currentItem: cc.Node;
     currentUserPropInfo: UserPropInfo;
@@ -38,8 +42,12 @@ export default class BagPage extends cc.Component {
 
     clearPanel() {
         // let frameAndBase = ResourceMgr.getFrameAndBase("N");
-        this.display_prop.getChildByName("Base").getComponent(cc.Sprite).spriteFrame = null;
-        this.display_prop.getChildByName("Frame").getComponent(cc.Sprite).spriteFrame = null;
+        cc.loader.loadRes("icon/frameandbase/frame1.png", cc.SpriteFrame, function(err, spriteFrame) {
+            this.getComponent(cc.Sprite).spriteFrame = spriteFrame
+        }.bind(this.display_prop.getChildByName("Frame").getComponent(cc.Sprite)))
+        cc.loader.loadRes("icon/frameandbase/base1.png", cc.SpriteFrame, function(err, spriteFrame) {
+            this.getComponent(cc.Sprite).spriteFrame = spriteFrame
+        }.bind(this.display_prop.getChildByName("Base").getComponent(cc.Sprite)))
         this.display_prop.getChildByName("Avatar").getComponent(cc.Sprite).spriteFrame = null;
         this.display_name.string = "";
         this.display_ownCount.string = "0";
@@ -58,7 +66,7 @@ export default class BagPage extends cc.Component {
         for (let i = 1; i < this.bagContent.childrenCount; i++) {
             this.bagContent.children[i].destroy();
         }
-        this.bagPropCount.string = "";
+        this.bagPropCount.string = "道具数量: 0/40";
     }
 
     addClickEffect(node: cc.Node) {
@@ -76,11 +84,14 @@ export default class BagPage extends cc.Component {
 
     updateBag() {
         httpMng.post("/prop/getProp", {}, (ret)=> {
-            for (var i = 0; i < 40; i++) {
-                let frameCopy = cc.instantiate(this.bagContent.children[0]);
-                frameCopy.active = true;
-                this.bagContent.addChild(frameCopy);
-                if (ret.propInfo[i]) {
+            this.own_count_label.active = false;
+            if(ret.propInfo){
+                this.no_prop_label.active = false;
+                this.bagPropCount.string = `道具数量: ${ret.propInfo.length}/40`;
+                for (var i = 0; i < ret.propInfo.length; i++) {
+                    let frameCopy = cc.instantiate(this.bagContent.children[0]);
+                    frameCopy.active = true;
+                    this.bagContent.addChild(frameCopy);
                     let userPropInfo = ret.propInfo[i];
                     let prop = frameCopy.getChildByName("Prop");
                     let frameUrl = "icon/frameandbase/frame"+userPropInfo.rarity;
@@ -100,6 +111,7 @@ export default class BagPage extends cc.Component {
                     prop.on(cc.Node.EventType.TOUCH_END, () => {
                         // this.currentItem = frameCopy;
                         // this.currentUserPropInfo = userPropInfo;
+                        this.own_count_label.active = true;
                         this.addClickEffect(frameCopy);
                         this.clearPanel();
                         this.item_btns.active = true
@@ -123,7 +135,10 @@ export default class BagPage extends cc.Component {
                         this.display_introduce.string = userPropInfo.introduce;
                     })
                 }
+            }else{
+                this.no_prop_label.active = true;
             }
+           
         })
     }
 
@@ -134,6 +149,7 @@ export default class BagPage extends cc.Component {
         for(let x = content.children.length - 1; x > 0; x--){
             content.children[x].destroy()
         }
+        this.node.parent.getChildByName("TopBar").getComponent("TopBar").setBlockInputEvents(true);
         httpMng.post("/monster/getMonster",{},(ret)=>{
             console.log(ret)
             var monsters = ret.monster
@@ -144,6 +160,7 @@ export default class BagPage extends cc.Component {
                     this.getComponent(cc.Sprite).spriteFrame = spriteFrame
                 }.bind(prop.getChildByName("Avatar").getComponent(cc.Sprite)))
                 content.addChild(frameCopy)
+                frameCopy.active = true;
                 frameCopy.on(cc.Node.EventType.TOUCH_END, () => {
                     this.monsterUsedPanel.active = false
                     
@@ -157,5 +174,9 @@ export default class BagPage extends cc.Component {
                 firstFrame.destroy()
             }
         })
+    }
+    closeUseItem(){
+        this.monsterUsedPanel.active = false;
+        this.node.parent.getChildByName("TopBar").getComponent("TopBar").setBlockInputEvents(false);
     }
 }

@@ -49,6 +49,8 @@ export default class MonsterPage extends cc.Component {
     detail_equipment: cc.Prefab = null;     //怪兽装备栏
     @property(cc.Prefab)
     detail_equipmentSelect: cc.Prefab = null;   //怪兽装备选择
+    @property(cc.Node)
+    no_monster_label: cc.Node = null;  //没有怪兽提示
 
     detailLock: boolean = false;
     monsterInfo: [];
@@ -198,53 +200,59 @@ export default class MonsterPage extends cc.Component {
     updateBag() {
         httpMng.post("/monster/getMonsterDetail", {sqlString: this.monsterSortString}, 
         (ret) => {
-            this.bagLabelValue.string = ret.monsterDetail.length
-            for (let child of this.bagContent.children) {
-                if (child.active) {
-                    child.destroy();
+            if(ret.monsterDetail){
+                this.no_monster_label.active = false;
+                this.bagLabelValue.string = ret.monsterDetail.length
+                for (let child of this.bagContent.children) {
+                    if (child.active) {
+                        child.destroy();
+                    }
                 }
+                
+                for (var i = 0; i < ret.monsterDetail.length; i++) {
+                    let monster = cc.instantiate(this.bagContentItem)
+                    monster.active = true;
+                    this.bagContent.addChild(monster);
+                    let monsterFrame = monster.getChildByName("Frame")
+                    let frameColor = new cc.Color()
+                    switch(ret.monsterDetail[i].monster_rarity){
+                        case "1":
+                            frameColor = this.rarity_color1
+                            break
+                        case "2":
+                            frameColor = this.rarity_color2
+                            break
+                        case "3":
+                            frameColor = this.rarity_color3
+                            break
+                    }
+                    monsterFrame.color = frameColor
+                    // cc.loader.loadRes(``, cc.SpriteFrame, function(err, spriteFrame) {
+                    //     this.getComponent(cc.Sprite).spriteFrame = spriteFrame
+                    // }.bind(monster.getChildByName("Frame").getComponent(cc.Sprite)))
+                    // cc.loader.loadRes(``, cc.SpriteFrame, function(err, spriteFrame) {
+                    //     this.getComponent(cc.Sprite).spriteFrame = spriteFrame
+                    // }.bind(monster.getChildByName("Base").getComponent(cc.Sprite)))
+                    // cc.loader.loadRes(``, cc.SpriteFrame, function(err, spriteFrame) {
+                    //     this.getComponent(cc.Sprite).spriteFrame = spriteFrame
+                    // }.bind(monster.getChildByName("Rarity").getComponent(cc.Sprite)))
+                    // cc.loader.loadRes(``, cc.SpriteFrame, function(err, spriteFrame) {
+                    //     this.getComponent(cc.Sprite).spriteFrame = spriteFrame
+                    // }.bind(monster.getChildByName("Level").getComponent(cc.Sprite)))
+                    var energy_label = monster.getChildByName("Level").getComponent(cc.Label)
+                    energy_label.string = ret.monsterDetail[i].monster_energy
+                    cc.loader.loadRes(`monster/${ret.monsterDetail[i].monster_id}`, cc.SpriteFrame, function(err, spriteFrame) {
+                        this.getComponent(cc.Sprite).spriteFrame = spriteFrame
+                    }.bind(monster.getChildByName("Avatar").getComponent(cc.Sprite)));
+                    cc.loader.loadRes(`monster/element/${ret.monsterDetail[i].monster_element}`, cc.SpriteFrame, function(err, spriteFrame) {
+                        this.getComponent(cc.Sprite).spriteFrame = spriteFrame
+                    }.bind(monster.getChildByName("Element").getComponent(cc.Sprite)))
+                    monster.getChildByName("Uid").getComponent(cc.Label).string = ret.monsterDetail[i].monster_uid;
+                }
+            }else{
+                this.no_monster_label.active = true;
             }
             
-            for (var i = 0; i < ret.monsterDetail.length; i++) {
-                let monster = cc.instantiate(this.bagContentItem)
-                monster.active = true;
-                this.bagContent.addChild(monster);
-                let monsterFrame = monster.getChildByName("Frame")
-                let frameColor = new cc.Color()
-                switch(ret.monsterDetail[i].monster_rarity){
-                    case "1":
-                        frameColor = this.rarity_color1
-                        break
-                    case "2":
-                        frameColor = this.rarity_color2
-                        break
-                    case "3":
-                        frameColor = this.rarity_color3
-                        break
-                }
-                monsterFrame.color = frameColor
-                // cc.loader.loadRes(``, cc.SpriteFrame, function(err, spriteFrame) {
-                //     this.getComponent(cc.Sprite).spriteFrame = spriteFrame
-                // }.bind(monster.getChildByName("Frame").getComponent(cc.Sprite)))
-                // cc.loader.loadRes(``, cc.SpriteFrame, function(err, spriteFrame) {
-                //     this.getComponent(cc.Sprite).spriteFrame = spriteFrame
-                // }.bind(monster.getChildByName("Base").getComponent(cc.Sprite)))
-                // cc.loader.loadRes(``, cc.SpriteFrame, function(err, spriteFrame) {
-                //     this.getComponent(cc.Sprite).spriteFrame = spriteFrame
-                // }.bind(monster.getChildByName("Rarity").getComponent(cc.Sprite)))
-                // cc.loader.loadRes(``, cc.SpriteFrame, function(err, spriteFrame) {
-                //     this.getComponent(cc.Sprite).spriteFrame = spriteFrame
-                // }.bind(monster.getChildByName("Level").getComponent(cc.Sprite)))
-                var energy_label = monster.getChildByName("Level").getComponent(cc.Label)
-                energy_label.string = ret.monsterDetail[i].monster_energy
-                cc.loader.loadRes(`monster/${ret.monsterDetail[i].monster_id}`, cc.SpriteFrame, function(err, spriteFrame) {
-                    this.getComponent(cc.Sprite).spriteFrame = spriteFrame
-                }.bind(monster.getChildByName("Avatar").getComponent(cc.Sprite)));
-                cc.loader.loadRes(`monster/element/${ret.monsterDetail[i].monster_element}`, cc.SpriteFrame, function(err, spriteFrame) {
-                    this.getComponent(cc.Sprite).spriteFrame = spriteFrame
-                }.bind(monster.getChildByName("Element").getComponent(cc.Sprite)))
-                monster.getChildByName("Uid").getComponent(cc.Label).string = ret.monsterDetail[i].monster_uid;
-            }
         })
         this.bag.active = true;
         this.monsterIntroduce.active = false;

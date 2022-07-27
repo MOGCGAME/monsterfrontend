@@ -16,6 +16,8 @@ class TopBar extends cc.Component {
 
     label_theme: cc.Label = null;
     item_text_list: cc.Label[] = [];
+    @property(cc.Node)
+    block_input_events: cc.Node = null
 
 
     onLoad () {
@@ -28,6 +30,7 @@ class TopBar extends cc.Component {
         });
         this.btn_back.on(cc.Node.EventType.TOUCH_END, () => {
             this.back();
+            this.node.destroy();
         });
     }
 
@@ -62,15 +65,24 @@ class TopBar extends cc.Component {
         if (GameMgr.pageStack.length == 1) {
             this.area_bg.active = false;
             this.area_label.active = false;
-            this.btn_back.active = false;
+            //this.btn_back.active = false;
             this.layout.x = -this.layout.width / 2 + 100;
         } else {
             // this.area_bg.active = true;
             // this.area_label.active = true;
-            this.btn_back.active = true;
+            //this.btn_back.active = true;
             this.layout.x = -cc.winSize.width / 2 + 340;
         }
         this.label_theme.string = GameMgr.pageStack[GameMgr.pageStack.length - 1].theme;
+    }
+
+    setBlockInputEvents(active:boolean){
+        this.block_input_events.active = active
+        if(active){
+            this.btn_back.opacity = 128
+        }else{
+            this.btn_back.opacity = 255
+        }
     }
 }
 

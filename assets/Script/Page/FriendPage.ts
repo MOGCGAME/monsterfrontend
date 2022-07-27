@@ -50,6 +50,9 @@ export default class FriendPage extends cc.Component {
     @property(cc.Node)
     infoPanel: cc.Node = null;
 
+    @property(cc.Node)
+    noFriendLabel: cc.Node = null;
+
     static instance: FriendPage;
 
     friendInfo: any;
@@ -95,11 +98,15 @@ export default class FriendPage extends cc.Component {
     }
 
     showMessagePanel(friendInfo) {
-        this.hideAll();
         this.chatPanel.active = true;
-        this.changeColor(3);
         this.currentChat = friendInfo.uid
         this.getMsg(this.currentChat);
+        this.node.parent.getChildByName("TopBar").getComponent("TopBar").setBlockInputEvents(true);
+    }
+
+    closeMessagePanel(){
+        this.chatPanel.active = false;
+        this.node.parent.getChildByName("TopBar").getComponent("TopBar").setBlockInputEvents(false);
     }
 
     hideAll() {
@@ -126,6 +133,7 @@ export default class FriendPage extends cc.Component {
                 cc.loader.loadRes(activeButtonSpriteStr, cc.SpriteFrame, function(err, spriteFrame) {
                     this.getComponent(cc.Button).normalSprite = spriteFrame
                 }.bind(buttons[x].getComponent(cc.Button))) 
+                buttons[x].getComponent(cc.Button).enabled = false;
             }else{
                 cc.loader.loadRes(inactiveButtonSpriteStr, cc.SpriteFrame, function(err, spriteFrame) {
                     this.getComponent(cc.Sprite).spriteFrame = spriteFrame
@@ -133,6 +141,7 @@ export default class FriendPage extends cc.Component {
                 cc.loader.loadRes(inactiveButtonSpriteStr, cc.SpriteFrame, function(err, spriteFrame) {
                     this.getComponent(cc.Button).normalSprite = spriteFrame
                 }.bind(buttons[x].getComponent(cc.Button))) 
+                buttons[x].getComponent(cc.Button).enabled = true;
             }
         }
         // this.detailbar.getChildByName("Btns").children[i].color = new cc.Color(255, 0, 0)
@@ -152,52 +161,57 @@ export default class FriendPage extends cc.Component {
         this.clearList();
         httpMng.post("/friend/getFriendList", {}, 
         (ret) => {
-            for (var i = 0; i < 60; i++) {
-                let frameCopy = cc.instantiate(this.friendContent.children[0])
-                frameCopy.active = true;
-                this.friendContent.addChild(frameCopy);
-                if (ret.friendList[i]) {
-                    let userFriendInfo = ret.friendList[i];
-                    let friend = frameCopy.getChildByName("Friend");
-                    cc.loader.loadRes(`icon/frameandbase/base3`, cc.SpriteFrame, function(err, spriteFrame) {
-                        this.getComponent(cc.Sprite).spriteFrame = spriteFrame
-                    }.bind(friend.getChildByName("Base").getComponent(cc.Sprite)))
-                    cc.loader.loadRes(`icon/frameandbase/frame${userFriendInfo.frame}`, cc.SpriteFrame, function(err, spriteFrame) {
-                        this.getComponent(cc.Sprite).spriteFrame = spriteFrame
-                    }.bind(friend.getChildByName("Frame").getComponent(cc.Sprite)))
-                    cc.loader.loadRes(`headIcon/${userFriendInfo.avatar}`, cc.SpriteFrame, function(err, spriteFrame) {
-                        this.getComponent(cc.Sprite).spriteFrame = spriteFrame
-                    }.bind(friend.getChildByName("Avatar").getComponent(cc.Sprite)))
-                    friend.getChildByName("Name").getComponent(cc.Label).string = userFriendInfo.nickname;
-                    friend.active = true;
-                    //chat
-                    friend.getChildByName("btn").getChildByName("chat").on(cc.Node.EventType.TOUCH_END, () => {
-                        this.friendInfo = userFriendInfo;
-                        console.log(this.friendInfo)
-                        this.showMessagePanel(this.friendInfo);
-                    })
-                    //unfriend
-                    friend.getChildByName("btn").getChildByName("unfriend").on(cc.Node.EventType.TOUCH_END, () => {
-                        this.friendInfo = userFriendInfo;
-                        this.confirmPanel.getChildByName("title").getComponent(cc.Label).string = "确认删除好友？"
-                        this.confirmPanel.active = true;
-                    })
-                    // confirm del
-                    this.confirmPanel.getChildByName("btn").getChildByName("confirm").on(cc.Node.EventType.TOUCH_END, () => {
-                        console.log("DELETE this.friendInfo.uid = ", this.friendInfo.uid)
-                        httpMng.post("/friend/deleteFriend", { friendid: this.friendInfo.uid }, 
-                        (ret) => {
-                            if(ret){
-                                this.appearInfoPanel( "已删除好友")
-                                this.getFriendList();
-                            }
+            if(ret.friendList){
+                this.noFriendLabel.active = false
+                for (var i = 0; i < ret.friendList.length; i++) {
+                    let frameCopy = cc.instantiate(this.friendContent.children[0])
+                    frameCopy.active = true;
+                    this.friendContent.addChild(frameCopy);
+                    if (ret.friendList[i]) {
+                        let userFriendInfo = ret.friendList[i];
+                        let friend = frameCopy.getChildByName("Friend");
+                        cc.loader.loadRes(`icon/frameandbase/base3`, cc.SpriteFrame, function(err, spriteFrame) {
+                            this.getComponent(cc.Sprite).spriteFrame = spriteFrame
+                        }.bind(friend.getChildByName("Base").getComponent(cc.Sprite)))
+                        cc.loader.loadRes(`icon/frameandbase/frame${userFriendInfo.frame}`, cc.SpriteFrame, function(err, spriteFrame) {
+                            this.getComponent(cc.Sprite).spriteFrame = spriteFrame
+                        }.bind(friend.getChildByName("Frame").getComponent(cc.Sprite)))
+                        cc.loader.loadRes(`headIcon/${userFriendInfo.avatar}`, cc.SpriteFrame, function(err, spriteFrame) {
+                            this.getComponent(cc.Sprite).spriteFrame = spriteFrame
+                        }.bind(friend.getChildByName("Avatar").getComponent(cc.Sprite)))
+                        friend.getChildByName("Name").getComponent(cc.Label).string = userFriendInfo.nickname;
+                        friend.active = true;
+                        //chat
+                        friend.getChildByName("btn").getChildByName("chat").on(cc.Node.EventType.TOUCH_END, () => {
+                            this.friendInfo = userFriendInfo;
+                            console.log(this.friendInfo)
+                            this.showMessagePanel(this.friendInfo);
                         })
-                    })
-                    // cancel
-                    this.confirmPanel.getChildByName("btn").getChildByName("cancel").on(cc.Node.EventType.TOUCH_END, () => {
-                        this.confirmPanel.active = false; 
-                    })
+                        //unfriend
+                        friend.getChildByName("btn").getChildByName("unfriend").on(cc.Node.EventType.TOUCH_END, () => {
+                            this.friendInfo = userFriendInfo;
+                            this.confirmPanel.getChildByName("title").getComponent(cc.Label).string = "确认删除好友？"
+                            this.confirmPanel.active = true;
+                        })
+                        // confirm del
+                        this.confirmPanel.getChildByName("btn").getChildByName("confirm").on(cc.Node.EventType.TOUCH_END, () => {
+                            console.log("DELETE this.friendInfo.uid = ", this.friendInfo.uid)
+                            httpMng.post("/friend/deleteFriend", { friendid: this.friendInfo.uid }, 
+                            (ret) => {
+                                if(ret){
+                                    this.appearInfoPanel( "已删除好友")
+                                    this.getFriendList();
+                                }
+                            })
+                        })
+                        // cancel
+                        this.confirmPanel.getChildByName("btn").getChildByName("cancel").on(cc.Node.EventType.TOUCH_END, () => {
+                            this.confirmPanel.active = false; 
+                        })
+                    }
                 }
+            }else{
+                this.noFriendLabel.active = true
             }
         })
     }

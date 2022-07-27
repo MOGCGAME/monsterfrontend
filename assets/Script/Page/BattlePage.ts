@@ -412,11 +412,31 @@ export default class BattlePage extends cc.Component {
     async autoAttack(match,turn){
         var target;
         var atkuuid = turn.user_id;
+        var frontTargetList = [];
+        var backTargetList = [];
         for(let i = 0; i < match.length; i++){
-            if(match[i].user_id != atkuuid && match[i].monster_hp > 0){
-                target = match[i];
-                break;
+            if (match.length / 2 == 3){
+                if(match[i].user_id != atkuuid && match[i].monster_hp > 0 ){
+                    if (match[i].monster_sequence == "1"){
+                        frontTargetList.push(match[i])
+                    } else{
+                        backTargetList.push(match[i])
+                    }
+                }
+            }else if (match.length/2 == 5){
+                if(match[i].user_id != atkuuid && match[i].monster_hp > 0 ){
+                    if (match[i].monster_sequence == "1" || match[i].monster_sequence == "2"){
+                        frontTargetList.push(match[i])
+                    } else{
+                        backTargetList.push(match[i])
+                    }
+                }
             }
+        }
+        if(frontTargetList.length > 0){
+            target = frontTargetList[Math.floor(Math.random() * frontTargetList.length)]
+        }else{
+            target = backTargetList[Math.floor(Math.random() * backTargetList.length)]
         }
         var result = []
         result = this.battleSystem.getComponent("BattleSystem").attack(target,turn, match);

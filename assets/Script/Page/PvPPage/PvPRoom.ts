@@ -16,7 +16,10 @@ export default class PVPRoom extends cc.Component {
     activeButton: cc.SpriteFrame
     @property(cc.SpriteFrame)
     inactiveButton: cc.SpriteFrame
+    @property(cc.Node)
+    popupDialog: cc.Node
     
+    waitForHttpResolve: any
     lyt
     team_Id
     
@@ -34,25 +37,26 @@ export default class PVPRoom extends cc.Component {
         this.teamBtnColor(this.activeButton,this.inactiveButton)
         this.setBattleTeam( this.lyt, this.team_Id, length)
     }
-
-    setBattleTeam(layout, teamId, length){
+    showPopup(message: string){
+        this.popupDialog.active = true
+        this.popupDialog.getChildByName("popup_text").getComponent(cc.Label).string = message
+        this.scheduleOnce(() => {
+            this.popupDialog.active = false
+        }, 2)
+    }
+    async setBattleTeam(layout, teamId, length){
         var battleCard = this.node.getChildByName("battleCard").getChildByName(layout)
         battleCard.active = true
         console.log("this is room", layout)
-        httpMng.post("/embattle/getCurrentEmbattle", {length: length},
+        var isSet;
+        httpMng.post("/embattle/changeEmbattle", {length: length, teamId: teamId},
         (ret) => {
             console.log("ret in setBattleTeam = ", ret)
-            this.team_Id = ret.embattleInfo[0].team_id
-            var team2 = this.node.getChildByName("btn").getChildByName("team2").getComponent(cc.Button)
-            if (ret.embattleInfo == null) {
-                team2.interactable = false
-                team2.node.active = false
-                this.teamBtnColor("g_m","y_m")
-            } else{
-                if(teamId == 2){
-                    team2.interactable = true
-                    team2.node.active = true
-                }
+            if(ret.error != null){
+                this.showPopup("该队伍为空，无法选择")
+                isSet = false;
+            }else{
+                this.team_Id = ret.embattleInfo[0].team_id
                 var battleCardSpriteArr = [], cardUidArr = [], cardImgUrlArr = []
                 for(var i = 0 ; i < battleCard.childrenCount ; i++){
                     var num = i + 1
@@ -64,10 +68,18 @@ export default class PVPRoom extends cc.Component {
                         this.spriteFrame = spriteframe
                     }.bind(battleCardSpriteArr[i]))
                 }
+                isSet = true;
+                if(this.waitForHttpResolve){
+                    this.waitForHttpResolve()
+                }
             }
         })
+        await this.waitForHttp()
+        return isSet
     }
-
+    waitForHttp(){
+        return new Promise(resolve => this.waitForHttpResolve= resolve)
+    }
     toMatch(){
         G.createGameObjectwithBackgroundThatBlocksInput(this.node, this.loading)
         this.scheduleOnce(function(){
@@ -83,11 +95,12 @@ export default class PVPRoom extends cc.Component {
         var length = JSON.parse(cc.sys.localStorage.getItem("room") || "")       // 3 or 5
         var embattle = cc.instantiate(this.embattle);
         var embattleInfo = embattle.getComponent("EmbattlePage");
+        embattleInfo.backButton.active = true
         embattleInfo.init(length, this.team_Id)
         this.node.addChild(embattle);
     }
 
-    changeTeam(event, customEventData){
+    async changeTeam(event, customEventData){
         var length = JSON.parse(cc.sys.localStorage.getItem("room") || "")       // 3 or 5
         var c1 = this.activeButton, c2 = this.inactiveButton
         if(customEventData == "A"){
@@ -101,8 +114,11 @@ export default class PVPRoom extends cc.Component {
             c1 = this.inactiveButton
             c2 = this.activeButton
         }
-        this.teamBtnColor(c1,c2)
-        this.setBattleTeam(this.lyt, this.team_Id, length)
+        var isSet = await this.setBattleTeam(this.lyt, this.team_Id, length)
+        console.log(isSet)
+        if(isSet){
+            this.teamBtnColor(c1,c2)
+        }
     }
 
     teamBtnColor(button1,button2){

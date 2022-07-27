@@ -135,6 +135,7 @@ export default class RankingPage extends cc.Component {
     }
 
     showUserInfo(userInfo, mode) {
+        this.node.parent.getChildByName("TopBar").getComponent("TopBar").setBlockInputEvents(true);
         httpMng.post("/user/getInfo", { uid : userInfo.uid },
         (ret) => {
             var userNode = cc.instantiate(this.info)
