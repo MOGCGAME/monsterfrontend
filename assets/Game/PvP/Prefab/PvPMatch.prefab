@@ -2178,7 +2178,7 @@
       "__id__": 22
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 56
@@ -2285,7 +2285,7 @@
       "__id__": 22
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 59
@@ -3596,7 +3596,7 @@
       "__id__": 62
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 95
@@ -3703,7 +3703,7 @@
       "__id__": 62
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 98
@@ -4597,13 +4597,13 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "New Label",
+    "_name": "matchingLabel",
     "_objFlags": 0,
     "_parent": {
       "__id__": 120
     },
     "_children": [],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 122
@@ -4622,7 +4622,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 240,
+      "width": 120,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -4635,7 +4635,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        40,
+        -301.821,
         0,
         0,
         0,
@@ -4674,13 +4674,15 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "正在匹配对手",
-    "_N$string": "正在匹配对手",
+    "_string": "匹配中",
+    "_N$string": "匹配中",
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
+    "_N$file": {
+      "__uuid__": "87b778d9-473d-48c5-920d-1ececa434734"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_batchAsBitmap": false,
     "_styleFlags": 0,
@@ -4700,7 +4702,7 @@
     "asset": {
       "__uuid__": "f2a6f7d9-8af7-4993-b1fe-80ee33aafede"
     },
-    "fileId": "33LCOWH5RH4IbfEiU9LKGI",
+    "fileId": "47H7BLDsBOVJvFDEKTU3lE",
     "sync": false
   },
   {

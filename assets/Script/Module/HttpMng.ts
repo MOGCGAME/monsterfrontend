@@ -84,7 +84,7 @@ class HttpMng extends cc.Component {
 
         // note: In Internet Explorer, the timeout property may be set only after calling the open()
         // method and before calling the send() method.
-        xhr.timeout = 5000;// 5 seconds for timeout
+        xhr.timeout = 60000;// 5 seconds for timeout
 
         xhr.send(JSON.stringify(param));
     }

@@ -6,8 +6,10 @@ const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class PvPResult extends cc.Component {
-
-
+    @property(cc.Node)
+    winningNode: cc.Node
+    @property(cc.Node)
+    failedNode:cc.Node
     @property(cc.Prefab)
     reward: cc.Prefab;
 
@@ -71,12 +73,16 @@ export default class PvPResult extends cc.Component {
         if(selfLeft > EnemyLeft){
             winnerMonster = selfLeft
             winLoseResultLabel.string = "胜利"
+            this.winningNode.active = true
+            this.failedNode.active = false
             rStr = "+" + R
             r = R
             toUpdateRank.color = new cc.Color(5, 255, 0)
         } else if(EnemyLeft > selfLeft){
             winnerMonster = EnemyLeft
             winLoseResultLabel.string = "失败"
+            this.winningNode.active = false
+            this.failedNode.active = true
             rStr = "-" + R
             r = (R * (-1) )
             toUpdateRank.color = new cc.Color(255, 0, 0)

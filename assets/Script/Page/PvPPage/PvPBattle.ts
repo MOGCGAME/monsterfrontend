@@ -246,6 +246,12 @@ export default class PVPBattle extends cc.Component {
                 var seq = match[i].TurnInfo[j].targetMonsterSeq
                 if( (damage > 0 && seq > 0) || (heal > 0) ){
                     turn.push(match[i].TurnInfo[j])
+                    var frameCopy = cc.instantiate(this.speedBar.node.getChildByName("view").getChildByName("content").children[0])
+                    cc.loader.loadRes(`monster/${match[i].TurnInfo[j].atkMonsterUid}`, cc.SpriteFrame, function(err, spriteframe){
+                        this.spriteFrame = spriteframe
+                    }.bind(frameCopy.getChildByName("image").getComponent(cc.Sprite)))
+                    frameCopy.active = true
+                    this.speedBar.node.getChildByName("view").getChildByName("content").addChild(frameCopy)
                 }
             }
         }
@@ -257,7 +263,6 @@ export default class PVPBattle extends cc.Component {
         var dir = ""
         for(var i = 0 ; i < turnArr.length; i++){
             if(turnArr[i].atkMonsterSide)
-            //if(turnArr[i].atkMonsterSide == "0")
                 dir = "left"
             else
                 dir = "right"
@@ -296,13 +301,16 @@ export default class PVPBattle extends cc.Component {
             // ========================   测试区   ==============================
 
 
-                this.prepare(i,dir,position,target,damage,element,heal,targetHp,attackHp,atkmultiple,skill,turnArr.length)
+            this.prepare(i,dir,position,target,damage,element,heal,targetHp,attackHp,atkmultiple,skill,turnArr.length)
         }
     }
 
     prepare(i,dir,position,target,damage,element,heal,targetHp,attackHp,atkmultiple,skill,last){
         this.scheduleOnce(function(){
             this.attack(dir,position,target,damage,element,heal,targetHp,attackHp,atkmultiple,skill,i+1,last)
+            if(this.speedBar.node.getChildByName("view").getChildByName("content").childrenCount > 0){
+                this.speedBar.node.getChildByName("view").getChildByName("content").removeChild(this.speedBar.node.getChildByName("view").getChildByName("content").children[0])
+            }
         },2 * i)
     }
     

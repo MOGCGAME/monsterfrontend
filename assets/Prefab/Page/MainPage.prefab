@@ -748,13 +748,13 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Thunder Explosion Particle",
+    "_name": "Flame Explosion Particle",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
     },
     "_children": [],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 23
@@ -785,8 +785,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
-        0,
+        -5.081,
+        41.918,
         0,
         0,
         0,
@@ -825,49 +825,51 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 1,
-    "_custom": true,
+    "_custom": {
+      "custom": false
+    },
     "_file": {
-      "__uuid__": "b2687ac4-099e-403c-a192-ff477686f4f5"
+      "__uuid__": "1da0c883-e65d-4f08-a51c-cbf66b361a93"
     },
     "_spriteFrame": {
-      "__uuid__": "9c2d5c68-9f5b-4fba-a2a8-77e9edd3bc19"
+      "__uuid__": "429a44bb-e7ff-4636-81b8-112d01fa6af3"
     },
     "_texture": null,
-    "_stopped": true,
-    "playOnLoad": true,
+    "_stopped": false,
+    "playOnLoad": false,
     "autoRemoveOnFinish": false,
-    "totalParticles": 200,
+    "totalParticles": 400,
     "duration": -1,
-    "emissionRate": 999.999985098839,
+    "emissionRate": 100,
     "life": 2,
-    "lifeVar": 0.5,
+    "lifeVar": 1,
     "_startColor": {
-      "__type__": "cc.Color",
-      "r": 150,
-      "g": 100,
-      "b": 150,
-      "a": 163
-    },
-    "_startColorVar": {
       "__type__": "cc.Color",
       "r": 0,
       "g": 0,
       "b": 0,
+      "a": 150
+    },
+    "_startColorVar": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 128,
+      "b": 255,
       "a": 0
     },
     "_endColor": {
       "__type__": "cc.Color",
-      "r": 100,
-      "g": 100,
-      "b": 150,
-      "a": 214
-    },
-    "_endColorVar": {
-      "__type__": "cc.Color",
       "r": 0,
       "g": 0,
       "b": 0,
-      "a": 188
+      "a": 128
+    },
+    "_endColorVar": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 128,
+      "b": 255,
+      "a": 0
     },
     "angle": 0,
     "angleVar": 360,
@@ -886,8 +888,8 @@
     },
     "posVar": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
+      "x": 75,
+      "y": 75
     },
     "_positionType": 1,
     "positionType": 1,
@@ -897,12 +899,12 @@
       "x": 0,
       "y": 0
     },
-    "speed": 0,
-    "speedVar": 190.7899933,
-    "tangentialAccel": -92.11000061035156,
-    "tangentialAccelVar": 65.79000091552734,
-    "radialAccel": -671.0499877929688,
-    "radialAccelVar": 65.79000091552734,
+    "speed": 30,
+    "speedVar": 20,
+    "tangentialAccel": 10,
+    "tangentialAccelVar": 50,
+    "radialAccel": 10,
+    "radialAccelVar": 50,
     "rotationIsDir": false,
     "startRadius": 0,
     "startRadiusVar": 0,
@@ -932,7 +934,7 @@
       "__id__": 1
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 26
@@ -1011,7 +1013,7 @@
       "__uuid__": "91b0b224-fd16-4f57-9851-304e0618e017"
     },
     "_texture": null,
-    "_stopped": true,
+    "_stopped": false,
     "playOnLoad": false,
     "autoRemoveOnFinish": false,
     "totalParticles": 25,
@@ -5040,7 +5042,7 @@
       "__uuid__": "a94c0a5d-4604-4350-9fd6-8f2e7c36e1f5"
     },
     "thunderParticle": {
-      "__id__": 26
+      "__id__": 23
     },
     "_id": ""
   },

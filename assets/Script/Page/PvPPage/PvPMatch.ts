@@ -17,10 +17,12 @@ export default class PvPMatch extends cc.Component {
     lyt
     team_Id
     countdowntime
+    cancelButtonTrigger: boolean
+    waitForMatchingResolve: any
     
-    onLoad () {
+    async onLoad () {
         var length = JSON.parse(cc.sys.localStorage.getItem("room") || "")       // 3 or 5
-
+        this.cancelButtonTrigger = true
         if(length == 3){
             this.lyt = "3v3"
         } else if(length == 5){
@@ -28,7 +30,8 @@ export default class PvPMatch extends cc.Component {
         } else {
             console.log("p_match.ts error of team_id from p_room.ts")
         }
-
+        await this.init(length)
+        await this.waitForMatching()
         var left = this.node.getChildByName("left").getChildByName("card").getChildByName(this.lyt)
         left.active = true
         var leftCard = left.getParent()
@@ -44,16 +47,16 @@ export default class PvPMatch extends cc.Component {
             rightCard.getComponent(cc.Animation).play("fromOutMoveInRight")
         }, 2)
         console.log("this is match", this.lyt)
-        this.init(length)
+        
     }
 
     countFunc(){
         var t = 0
-        var a = "", x = ".",  txt = "正在匹配对手"
+        var a = "", x = ".",  txt = "匹配中"
         this.countdowntime = function() {
             t++
             var time = this.countdown.getChildByName("time").getComponent(cc.Label)
-            var txtLabel = this.countdown.getChildByName("New Label").getComponent(cc.Label)
+            var txtLabel = this.countdown.getChildByName("matchingLabel").getComponent(cc.Label)
             time.string = t
             a = x
             if(t%4 == 0){
@@ -63,9 +66,10 @@ export default class PvPMatch extends cc.Component {
            
             txtLabel.string = txtLabel.string + a
             
-            if (t >= 10) {
+            if (t >= 10 && this.cancelButtonTrigger) {
                 this.cancelBtn.active = true
                 this.cancelBtn.getChildByName("New Label").getComponent(cc.Label).string = "取消"
+                this.cancelButtonTrigger = false
             }
             
             if(t >= 30) {
@@ -76,12 +80,16 @@ export default class PvPMatch extends cc.Component {
     }
 
     cancelFight(){
-        this.unschedule(this.countdowntime);
-        cc.director.loadScene("Game")
+        this.cancelBtn.active = false
+        httpMng.post("/matching/renewMatching",{matching: 0},(ret)=>{
+            this.unschedule(this.countdowntime);
+            cc.director.loadScene("Game")
+        })
+        
     }
 
 
-    init(room){
+    async init(room){
         this.countFunc()
         var scene
         var team_Id = JSON.parse(cc.sys.localStorage.getItem("team_id") || "")
@@ -94,13 +102,16 @@ export default class PvPMatch extends cc.Component {
         } else {
             console.log("room = ", room)
         }
-
+        var txtLabel = this.countdown.getChildByName("matchingLabel").getComponent(cc.Label)
         httpMng.post("/matching/getPvPMatching", { length: room, matching: 1 }, 
         (ret) => {
             console.log("ret in p_match = ", ret)
             if (ret.code == "Monster Not Enough Energy") {
                 console.log(ret.code)
-            } else {
+            } else if (ret.code == "30 seconds has been reached"){
+                console.log(ret.code)
+            }else {
+                txtLabel.string = "匹配成功，正在载入中"
                 var left = this.node.getChildByName("left").getChildByName("card").getChildByName(scene)
                 var right = this.node.getChildByName("right").getChildByName("card").getChildByName(scene)
                 var leftCard = [], leftUid = [], leftImg = []
@@ -134,11 +145,21 @@ export default class PvPMatch extends cc.Component {
                     paramsArr[1] = ret.enemy
                     cc.sys.localStorage.setItem("match", JSON.stringify(ret));
                     this.fight()
-                },2)
+                },2.5)
             }
+            if(this.waitForMatchingResolve){
+                this.waitForMatchingResolve()
+            }
+            if(this.cancelBtn != null){
+                this.cancelBtn.active = false
+            }
+            
         })
+        
     }
-
+    waitForMatching(){
+        return new Promise(resolve => this.waitForMatchingResolve= resolve)
+    }
     fight(){
         this.unschedule(this.countdowntime);
         cc.director.loadScene("PVPBattle")
